@@ -1,12 +1,12 @@
 #include <Arduino.h>
-const int16_t MAX_ACCELERATION = 100;
-const int16_t MAX_SPEED = 100;
-const int16_t FRICTION = 5;
-const int16_t POWER = 10;
-const int16_t TEMPO_NUMENATOR = 10000;
+const int16_t MAX_SPEED = 51;
+const int16_t FRICTION = 3;
+int16_t acceleration = FRICTION*2;
+const int16_t TEMPO_NUMENATOR = 1000;
 
 int8_t direction = 1;
 int16_t speed = 0;
+int16_t oldSpeed = 0;
 int16_t tempo = 1000;
 int32_t coord = 0;
 int32_t targetCoord = 0;
@@ -15,8 +15,11 @@ void setup() {
 	Serial.begin(115200);
 	inputString.reserve(200);
 }
-void step(int16_t s){
-	coord+=direction;
+void step(){
+	if(speed>0)
+		coord++;
+	else if(speed<0)
+		coord--;
 	Serial.print(millis());
 	Serial.print("\t");
 	Serial.print(coord*10);
@@ -38,28 +41,34 @@ bool isFar(){
 	if(abs(coord - targetCoord) <= FRICTION) return false;
 	return true;
 }
+bool speedSignChanged(){
+	if(speed == 0) return true;
+	if(oldSpeed<0 && speed>0) return true;
+	if(oldSpeed>0 && speed<0) return true;
+	return false;
+}
 void loop() {
 	bool far = isFar();
 	if(coord>targetCoord){
-		direction = -1;
+		//if(speedSignChanged()) direction = -1;
 		if(checkSpeed() >= 0 && far){
-			speed -= POWER;
+			speed -= acceleration;
 		}
 	}else if(coord<targetCoord){
-		direction = 1;
+		//if(speedSignChanged()) direction = 1;
 		if(checkSpeed() <= 0 && far){
-			speed += POWER;
+			speed += acceleration;
 		}
 	}
 
 	friction();
 	if(speed)
 		tempo = abs(TEMPO_NUMENATOR/speed);
-	step(speed);
-	if(!far)
-		coord = targetCoord;
+	step();
 	uint32_t m = millis()+tempo;
 	while(m>millis());
+	
+	oldSpeed = speed;
 	
 }
 void serialEvent() {
