@@ -1,28 +1,27 @@
 #include <Arduino.h>
-const int16_t MAX_SPEED = 51;
-const int16_t FRICTION = 3;
-int16_t acceleration = FRICTION*2;
-const int16_t TEMPO_NUMENATOR = 1000;
+const float MAX_SPEED = 51;
+const float MIN_SPEED = 2;
+const float FRICTION = .8;
+const float ACCELERATION = 5;
+const float TEMPO_NUMENATOR = 1000;
 
-int8_t direction = 1;
-int16_t speed = 0;
-int16_t oldSpeed = 0;
-int16_t tempo = 1000;
-int32_t coord = 0;
-int32_t targetCoord = 0;
+float speed = 0;
+float speed1 = 0;
+float oldSpeed = 0;
+float tempo = 1;
+float coord = 0;
+float targetCoord = 0;
 String inputString = "";
 void setup() {
 	Serial.begin(115200);
 	inputString.reserve(200);
 }
-void step(){
-	if(speed>0)
-		coord++;
-	else if(speed<0)
-		coord--;
+void pr(){
 	Serial.print(millis());
 	Serial.print("\t");
-	Serial.print(coord*10);
+	Serial.print(coord);
+	//Serial.print("\t");
+	//Serial.print(10000*(oldSpeed-speed)/tempo);
 	Serial.print("\t");
 	Serial.println(speed);
 }
@@ -32,45 +31,32 @@ int8_t checkSpeed(){
 	return 0;
 }
 void friction(){
-	if(speed>0)
-	speed -= FRICTION;
-	else if(speed<0)
-	speed += FRICTION;
+	speed *= FRICTION;
+	if(speed < MIN_SPEED)
+		speed = 0;
 }
-bool isFar(){
-	if(abs(coord - targetCoord) <= FRICTION) return false;
-	return true;
-}
-bool speedSignChanged(){
-	if(speed == 0) return true;
-	if(oldSpeed<0 && speed>0) return true;
-	if(oldSpeed>0 && speed<0) return true;
-	return false;
-}
-void loop() {
-	bool far = isFar();
-	if(coord>targetCoord){
-		//if(speedSignChanged()) direction = -1;
-		if(checkSpeed() >= 0 && far){
-			speed -= acceleration;
-		}
-	}else if(coord<targetCoord){
-		//if(speedSignChanged()) direction = 1;
-		if(checkSpeed() <= 0 && far){
-			speed += acceleration;
-		}
+int8_t direction=0;
+void loop(){
+	if(speed == 0){
+		tempo = 1;
+	}else{
+		tempo=1./speed;
+		pr();
 	}
-
-	friction();
-	if(speed)
-		tempo = abs(TEMPO_NUMENATOR/speed);
-	step();
-	uint32_t m = millis()+tempo;
-	while(m>millis());
-	
-	oldSpeed = speed;
-	
+	if(checkSpeed() == 0){
+		if(direction>0)
+			speed = speed + tempo*ACCELERATION;
+		else if(direction<0)
+			speed = speed - tempo*ACCELERATION;
+		else
+			friction();
+	}
+	delay(tempo*1000);
 }
+/*
+при получении цели задается направление, скорость начинает нарастать в нужном направлении
+при достижении цели направление обращается в 0, скорость плавно падает
+*/
 void serialEvent() {
 	while (Serial.available()) {
 		char inChar = (char)Serial.read();
@@ -79,6 +65,11 @@ void serialEvent() {
 		if (inChar == '\n') {
 			//Serial.println(inputString.toInt());
 			targetCoord = inputString.toInt();
+			if(targetCoord > coord){
+				direction = 1;
+			}else if(targetCoord < coord){
+				direction = -1;
+			}
 			inputString = "";
 		}
 	}

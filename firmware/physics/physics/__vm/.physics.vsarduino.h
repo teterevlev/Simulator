@@ -19,11 +19,9 @@
 #define ARDUINO_ARCH_AVR
 
 //
-void step();
+void pr();
 int8_t checkSpeed();
 void friction();
-bool isFar();
-bool speedSignChanged();
 //
 void serialEvent();
 
