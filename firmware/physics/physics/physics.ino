@@ -1,10 +1,11 @@
 #include <Arduino.h>
 const float MAX_SPEED = 51;
 const float MIN_SPEED = 2;
-const float FRICTION = .8;
+const float FRICTION = 2;
 const float ACCELERATION = 5;
 const float TEMPO_NUMENATOR = 1000;
 
+bool run = false;
 float speed = 0;
 float speed1 = 0;
 float oldSpeed = 0;
@@ -30,27 +31,48 @@ int8_t checkSpeed(){
 	if(speed < -MAX_SPEED) return -1;
 	return 0;
 }
-void friction(){
-	speed *= FRICTION;
-	if(speed < MIN_SPEED)
-		speed = 0;
+void step(){
+	if(speed>0)
+	coord ++;
+	else if(speed<0)
+	coord--;
 }
+void friction(){
+	if(speed>0){
+		speed -= tempo*FRICTION;
+		if(speed < MIN_SPEED)
+			speed = 0;
+	}else if(speed<0){
+		speed += tempo*FRICTION;
+		if(speed > -MIN_SPEED)
+			speed = 0;
+	}
+}
+
 int8_t direction=0;
 void loop(){
-	if(speed == 0){
+	if(speed < MIN_SPEED && speed > -MIN_SPEED){
 		tempo = 1;
 	}else{
-		tempo=1./speed;
+		tempo=abs(1./speed);
 		pr();
 	}
-	if(checkSpeed() == 0){
-		if(direction>0)
-			speed = speed + tempo*ACCELERATION;
-		else if(direction<0)
-			speed = speed - tempo*ACCELERATION;
-		else
-			friction();
+	if(run){
+		if(targetCoord > coord){
+			if(checkSpeed() == 0){
+				speed = speed + tempo*ACCELERATION;
+			}
+			if(direction<0) run=false;
+		}else if(targetCoord < coord){
+			if(checkSpeed() == 0){
+				speed = speed - tempo*ACCELERATION;
+			}
+			if(direction>0) run=false;
+		}
+	}else{
+		friction();
 	}
+	step();
 	delay(tempo*1000);
 }
 /*
@@ -70,6 +92,7 @@ void serialEvent() {
 			}else if(targetCoord < coord){
 				direction = -1;
 			}
+			run = true;
 			inputString = "";
 		}
 	}

@@ -21,6 +21,7 @@
 //
 void pr();
 int8_t checkSpeed();
+void step();
 void friction();
 //
 void serialEvent();
