@@ -1,8 +1,8 @@
 #include <Arduino.h>
-const float MAX_SPEED = 51;
+const float MAX_SPEED = 20;
 const float MIN_SPEED = 2;
-const float FRICTION = 2;
-const float ACCELERATION = 5;
+const float FRICTION = .5;
+const float ACCELERATION = .2;
 const float TEMPO_NUMENATOR = 1000;
 int8_t direction=0;
 
@@ -19,6 +19,10 @@ void setup() {
 	Serial.begin(115200);
 	inputString.reserve(200);
 	Serial.println("time\tcoord\tspeed\tdir\trun\ttargetSpeed");
+	pinMode(A0, OUTPUT);
+	pinMode(A1, OUTPUT);
+	pinMode(A2, OUTPUT);
+	pinMode(A3, OUTPUT);
 }
 void pr(){
 	Serial.print(millis());
@@ -38,21 +42,55 @@ int8_t checkSpeed(){
 	if(speed < 0 && speed <= -targetSpeed) return -1;
 	return 0;
 }
+void motor(bool up){
+	static int8_t phase;
+	if(up) phase++;
+	else phase--;
+	if(phase>=8)
+		phase = 0;
+	else if(phase<0)
+		phase = 7;
+	switch (phase){
+		case 0: digitalWrite(A1, HIGH);break;
+		case 1: digitalWrite(A0, LOW);break;
+		case 2: digitalWrite(A2, HIGH);break;
+		case 3: digitalWrite(A1, LOW);break;
+		case 4: digitalWrite(A3, HIGH);break;
+		case 5: digitalWrite(A2, LOW);break;
+		case 6: digitalWrite(A0, HIGH);break;
+		case 7: digitalWrite(A3, LOW);break;
+	}
+	
+}
+void stop(){
+	digitalWrite(A0, LOW);
+	digitalWrite(A1, LOW);
+	digitalWrite(A2, LOW);
+	digitalWrite(A3, LOW);
+	Serial.println("stop");
+}
 void step(){
-	if(speed>0)
-	coord ++;
-	else if(speed<0)
-	coord--;
+	if(speed>0){
+		coord ++;
+		motor(1);
+	}else if(speed<0){
+		coord--;
+		motor(0);
+	}
 }
 void friction(){
 	if(speed>0){
 		speed -= tempo*FRICTION;
-		if(speed < MIN_SPEED)
+		if(speed < MIN_SPEED){
 			speed = 0;
+			stop();
+		}
 	}else if(speed<0){
 		speed += tempo*FRICTION;
-		if(speed > -MIN_SPEED)
+		if(speed > -MIN_SPEED){
 			speed = 0;
+			stop();
+		}
 	}
 }
 void limitSpeed(){
@@ -83,10 +121,10 @@ void loop(){
 		tempo = 1;
 	}else{
 		tempo=abs(1./speed);
-		pr();
+		//pr();
 	}
 	step();
-	delay(tempo*1000);
+	delayMicroseconds(tempo*20000);
 }
 
 void serialEvent() {
