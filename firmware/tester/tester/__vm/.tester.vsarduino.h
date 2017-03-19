@@ -19,14 +19,8 @@
 #define ARDUINO_ARCH_AVR
 
 //
-void pr();
-int8_t checkSpeed();
-void step();
-void friction();
-void limitSpeed();
 //
-void serialEvent();
 
 #include "pins_arduino.h" 
 #include "arduino.h"
-#include "physics.ino"
+#include "tester.ino"

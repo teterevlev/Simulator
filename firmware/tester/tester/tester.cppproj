@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>physics</AssemblyName>
-    <Name>physics</Name>
-    <RootNamespace>physics</RootNamespace>
+    <AssemblyName>tester</AssemblyName>
+    <Name>tester</Name>
+    <RootNamespace>tester</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
@@ -44,7 +44,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
       <AvrGccCpp>
-  <avrgcc.common.Device>-mmcu=atmega328p -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.1.130\gcc\dev\atmega328p"</avrgcc.common.Device>
+  <avrgcc.common.Device>-mmcu=atmega2560 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.1.130\gcc\dev\atmega2560"</avrgcc.common.Device>
   <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
   <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
   <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
@@ -70,7 +70,7 @@
       <Value>C:/Users/odama/Documents/Arduino/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega</Value>
-      <Value>../../../physics</Value>
+      <Value>../../../tester</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include</Value>
@@ -101,7 +101,7 @@
       <Value>C:/Users/odama/Documents/Arduino/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega</Value>
-      <Value>../../../physics</Value>
+      <Value>../../../tester</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include</Value>
@@ -125,10 +125,9 @@
   <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
 </AvrGccCpp>
     </ToolchainSettings>
-    <VMSETTING_IncludePaths>C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Users/odama/Documents/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega;../../../physics;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/;C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include;C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers;C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers/VM_DBG;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;</VMSETTING_IncludePaths>
+    <VMSETTING_IncludePaths>C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Users/odama/Documents/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega;../../../tester;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/;C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include;C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers/VM_DBG;C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;</VMSETTING_IncludePaths>
     <VisualMicroSettings>
       <VisualMicroSettings>
-        <arduino.upload.port>COM10</arduino.upload.port>
         <arduino.board.name>mega_atmega2560</arduino.board.name>
         <arduino.board.desc>Arduino/Genuino Mega w/ ATmega2560 (Mega 2560)</arduino.board.desc>
         <arduino.board.property_bag>name=Arduino/Genuino Mega w/ ATmega2560 (Mega 2560)
@@ -403,13 +402,14 @@ vmresolved.tools.path=C:\Program Files (x86)\Arduino\hardware\tools\avr
         <visualmicro.application.name>arduino16x</visualmicro.application.name>
         <visualmicro.package.name>arduino</visualmicro.package.name>
         <visualmicro.platform.name>avr</visualmicro.platform.name>
+        <arduino.upload.port>COM10</arduino.upload.port>
       </VisualMicroSettings>
     </VisualMicroSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <ToolchainSettings>
       <AvrGccCpp>
-  <avrgcc.common.Device>-mmcu=atmega328p -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.1.130\gcc\dev\atmega328p"</avrgcc.common.Device>
+  <avrgcc.common.Device>-mmcu=atmega2560 -B "%24(PackRepoDir)\atmel\ATmega_DFP\1.1.130\gcc\dev\atmega2560"</avrgcc.common.Device>
   <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
   <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
   <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
@@ -435,7 +435,7 @@ vmresolved.tools.path=C:\Program Files (x86)\Arduino\hardware\tools\avr
       <Value>C:/Users/odama/Documents/Arduino/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega</Value>
-      <Value>../../../physics</Value>
+      <Value>../../../tester</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include</Value>
@@ -466,7 +466,7 @@ vmresolved.tools.path=C:\Program Files (x86)\Arduino\hardware\tools\avr
       <Value>C:/Users/odama/Documents/Arduino/libraries</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega</Value>
-      <Value>../../../physics</Value>
+      <Value>../../../tester</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include</Value>
@@ -490,10 +490,9 @@ vmresolved.tools.path=C:\Program Files (x86)\Arduino\hardware\tools\avr
   <avrgcccpp.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcccpp.assembler.debugging.DebugLevel>
 </AvrGccCpp>
     </ToolchainSettings>
-    <VMSETTING_IncludePaths>C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Users/odama/Documents/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega;../../../physics;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/;C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include;C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers;C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers/VM_DBG;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;</VMSETTING_IncludePaths>
+    <VMSETTING_IncludePaths>C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Users/odama/Documents/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega;../../../tester;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/;C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include;C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers/VM_DBG;C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;</VMSETTING_IncludePaths>
     <VisualMicroSettings>
       <VisualMicroSettings>
-        <arduino.upload.port>COM10</arduino.upload.port>
         <arduino.board.name>mega_atmega2560</arduino.board.name>
         <arduino.board.desc>Arduino/Genuino Mega w/ ATmega2560 (Mega 2560)</arduino.board.desc>
         <arduino.board.property_bag>name=Arduino/Genuino Mega w/ ATmega2560 (Mega 2560)
@@ -768,14 +767,15 @@ vmresolved.tools.path=C:\Program Files (x86)\Arduino\hardware\tools\avr
         <visualmicro.application.name>arduino16x</visualmicro.application.name>
         <visualmicro.package.name>arduino</visualmicro.package.name>
         <visualmicro.platform.name>avr</visualmicro.platform.name>
+        <arduino.upload.port>COM10</arduino.upload.port>
       </VisualMicroSettings>
     </VisualMicroSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="physics.ino">
+    <Compile Include="tester.ino">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="__vm\.physics.vsarduino.h">
+    <Compile Include="__vm\.tester.vsarduino.h">
       <SubType>compile</SubType>
     </Compile>
   </ItemGroup>
