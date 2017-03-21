@@ -23,6 +23,7 @@ void setup() {
 	pinMode(A1, OUTPUT);
 	pinMode(A2, OUTPUT);
 	pinMode(A3, OUTPUT);
+	pinMode(12, OUTPUT);
 	pinMode(13, OUTPUT);
 }
 void pr(){
@@ -57,15 +58,18 @@ void motor(bool up){
 		case 2: digitalWrite(A3, HIGH);digitalWrite(A2, LOW);break;
 		case 3: digitalWrite(A0, HIGH);digitalWrite(A3, LOW);break;
 	}
-	digitalWrite(13, digitalRead(A4)^1);
+	digitalWrite(13, phase%2);
+	digitalWrite(12, up);
 }
+float oldspeed;
 void stop(){
 	digitalWrite(A0, LOW);
 	digitalWrite(A1, LOW);
 	digitalWrite(A2, LOW);
 	digitalWrite(A3, LOW);
-	Serial.print("stop at ");
-	Serial.println(coord);
+	//Serial.print("stop at ");
+	//Serial.println(coord);
+	
 }
 void step(){
 	if(speed>0){
@@ -74,7 +78,13 @@ void step(){
 	}else if(speed<0){
 		coord--;
 		motor(0);
+	}else return;
+	/*if((oldspeed>0 && speed <= 0) || (oldspeed<0 && speed >= 0)){
+		Serial.print("\t");
+		uint32_t intCoord = coord;
+		Serial.print(coord, DEC);
 	}
+	oldspeed = speed;*/
 }
 void friction(){
 	if(speed>0){
