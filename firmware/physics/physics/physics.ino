@@ -23,6 +23,7 @@ void setup() {
 	pinMode(A1, OUTPUT);
 	pinMode(A2, OUTPUT);
 	pinMode(A3, OUTPUT);
+	pinMode(13, OUTPUT);
 }
 void pr(){
 	Serial.print(millis());
@@ -46,28 +47,25 @@ void motor(bool up){
 	static int8_t phase;
 	if(up) phase++;
 	else phase--;
-	if(phase>=8)
+	if(phase>=4)
 		phase = 0;
 	else if(phase<0)
-		phase = 7;
+		phase = 3;
 	switch (phase){
-		case 0: digitalWrite(A1, HIGH);break;
-		case 1: digitalWrite(A0, LOW);break;
-		case 2: digitalWrite(A2, HIGH);break;
-		case 3: digitalWrite(A1, LOW);break;
-		case 4: digitalWrite(A3, HIGH);break;
-		case 5: digitalWrite(A2, LOW);break;
-		case 6: digitalWrite(A0, HIGH);break;
-		case 7: digitalWrite(A3, LOW);break;
+		case 0: digitalWrite(A1, HIGH);digitalWrite(A0, LOW);break;
+		case 1: digitalWrite(A2, HIGH);digitalWrite(A1, LOW);break;
+		case 2: digitalWrite(A3, HIGH);digitalWrite(A2, LOW);break;
+		case 3: digitalWrite(A0, HIGH);digitalWrite(A3, LOW);break;
 	}
-	
+	digitalWrite(13, digitalRead(A4)^1);
 }
 void stop(){
 	digitalWrite(A0, LOW);
 	digitalWrite(A1, LOW);
 	digitalWrite(A2, LOW);
 	digitalWrite(A3, LOW);
-	Serial.println("stop");
+	Serial.print("stop at ");
+	Serial.println(coord);
 }
 void step(){
 	if(speed>0){
@@ -144,10 +142,11 @@ void serialEvent() {
 			targetSpeed = abs(targetSpeed);
 			if(targetSpeed > MAX_SPEED)
 				targetSpeed = MAX_SPEED;
+				/*
 			Serial.print("\t");
 			Serial.print(targetCoord);
 			Serial.print("\t");
-			Serial.println(targetSpeed);
+			Serial.println(targetSpeed);*/
 			run = true;
 			inputString = "";
 		}

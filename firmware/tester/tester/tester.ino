@@ -7,19 +7,19 @@ void setup()
 	Serial1.begin(115200);
 	while(!Serial.available());
 }
-uint8_t i=0;
+uint16_t i=0;
 void loop()
 {
-	uint32_t m = millis()+10;
+	uint32_t m = millis()+100;
 // 	Serial.print("-----------------------\t");
  	Serial.println(a[i]);
 	Serial1.println(a[i]);
-	if(i<400) i++;
+	if(i<500) i++;
 	else while(1);
 	while(m > millis()){
-		/*while(Serial1.available()){
+		while(Serial1.available()){
 			char c = Serial1.read();
 			Serial.write(c);
-		}*/
+		}
 	}
 }
