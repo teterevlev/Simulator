@@ -72,6 +72,7 @@
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs</Value>
       <Value>../../../physics</Value>
+      <Value>C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include</Value>
@@ -104,6 +105,7 @@
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs</Value>
       <Value>../../../physics</Value>
+      <Value>C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include</Value>
@@ -130,7 +132,7 @@
     <VMSETTING_IncludePaths>C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Users/odama/Documents/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega;../../../physics;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/;C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include;C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers;C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers/VM_DBG;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;</VMSETTING_IncludePaths>
     <VisualMicroSettings>
       <VisualMicroSettings>
-        <arduino.upload.port>COM8</arduino.upload.port>
+        <arduino.upload.port>COM12</arduino.upload.port>
         <arduino.board.name>nano_atmega328</arduino.board.name>
         <arduino.board.desc>Arduino Nano w/ ATmega328</arduino.board.desc>
         <arduino.board.property_bag>name=Arduino Nano w/ ATmega328
@@ -424,6 +426,7 @@ build.arch=AVR
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs</Value>
       <Value>../../../physics</Value>
+      <Value>C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include</Value>
@@ -456,6 +459,7 @@ build.arch=AVR
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs</Value>
       <Value>../../../physics</Value>
+      <Value>C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/</Value>
       <Value>C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include</Value>
@@ -482,7 +486,7 @@ build.arch=AVR
     <VMSETTING_IncludePaths>C:/Program Files (x86)/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/libraries;C:/Users/odama/Documents/Arduino/libraries;C:/Program Files (x86)/Arduino/hardware/arduino/avr/cores/arduino;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/mega;../../../physics;C:/Program Files (x86)/Arduino/hardware/tools/avr/avr/include/;C:/Program Files (x86)/Arduino/hardware/tools/avr//avr/include/avr/;C:/Program Files (x86)/Arduino/hardware/tools/avr/lib/gcc/avr/4.8.1/include;C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers;C:/Program Files (x86)/Atmel/Studio/7.0/Extensions/dcfu4xrq.eeu/Micro Platforms/default/debuggers/VM_DBG;C:/Program Files (x86)/Arduino/hardware/arduino/avr/variants/eightanaloginputs;</VMSETTING_IncludePaths>
     <VisualMicroSettings>
       <VisualMicroSettings>
-        <arduino.upload.port>COM8</arduino.upload.port>
+        <arduino.upload.port>COM12</arduino.upload.port>
         <arduino.board.name>nano_atmega328</arduino.board.name>
         <arduino.board.desc>Arduino Nano w/ ATmega328</arduino.board.desc>
         <arduino.board.property_bag>name=Arduino Nano w/ ATmega328

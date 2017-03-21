@@ -109,7 +109,8 @@ void loop(){
 	if(run){
 		if(targetCoord >= coord){
 			if(checkSpeed() == 0){
-				speed = speed + tempo*ACCELERATION;
+				//speed = speed + tempo*ACCELERATION;
+				speed = speed*
 			}else{
 				limitSpeed();
 			}
