@@ -5,14 +5,21 @@ float targetCoord = 0;
 float coord = 0;
 float speed = 0;
 float period = 1000;
-float minPeriod = 1000;
-// TCCR0B=0x03: 16 - 2040 us
-// TCCR0B=0x04: 64 - 8200 us
-// TCCR0B=0x05: 256 - 32600 us
-void checkPeriod(){
-	if(period < minPeriod) period = minPeriod;
+float acceleration = 0;
+float maxSpeed = 20;
+float maxAcceleration = 1;
+float requestFrequency = .01;
+
+void checkSpeed(){
+	if(speed > maxSpeed) speed = maxSpeed;
 }
 int32_t c=0;
+void setCoord(){
+	float newSpeed = requestFrequency*(targetCoord-coord);
+	acceleration = newSpeed-speed;
+	if(acceleration>maxAcceleration) acceleration = maxAcceleration;
+	
+}
 void readUartDec(){
 	static bool minus;
 	if(uart_available()){
@@ -24,7 +31,7 @@ void readUartDec(){
 			else
 				targetCoord = c;
 				
-			
+			setCoord();
 			//drive(0, targetCoord);
 			uart_dec(targetCoord);
 			uart_putchar('\n');
@@ -58,18 +65,23 @@ int main(void)
 
 ISR(TIMER0_COMPA_vect){
 	if(PIND & 0b01000000){
-		speed = targetCoord-coord;
+		speed += acceleration;
+		checkSpeed();
 		period = 20000./speed;
 		if(period<0) period = -period;
-		checkPeriod();
 		drive(0, period);
 	}else{
 		if(speed > 0){
 			coord++;
+			if(coord > targetCoord){
+				acceleration = -maxAcceleration/4;
+			}
 		}else return;
 		uart_dec(speed);
 		uart_putchar('\t');
 		uart_dec(period);
+		//uart_putchar('\t');
+		//uart_dec(acceleration);
 		uart_putchar('\t');
 		uart_dec(coord);
 		uart_putchar('\n');

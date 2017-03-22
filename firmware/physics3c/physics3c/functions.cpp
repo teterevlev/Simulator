@@ -39,6 +39,9 @@ void uart_dec(int32_t d){
 	uart_putchar((d%10)+48);
 }
 void timer(uint8_t id, uint8_t prescale, uint8_t ocr){
+	// TCCR0B=0x03: 16 - 2040 us
+	// TCCR0B=0x04: 64 - 8200 us
+	// TCCR0B=0x05: 256 - 32600 us
 	if(id==0){
 		TCCR0B=prescale;
 		OCR0A = ocr;
