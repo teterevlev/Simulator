@@ -17,10 +17,13 @@ void uart_init();
 void gpio_init();
 void interrupt_init();
 void uart_putchar(uint8_t c);
+void uart_putcharln(uint8_t c);
 uint8_t uart_getchar();
 bool uart_available();
 void uart_dec(int32_t);
 void drive(uint8_t id, float period);
 void timer(uint8_t id, uint8_t prescale, uint8_t ocr);
+void stopTimer(uint8_t id);
+void physically();
 
 #endif /* FUNCTIONS_H_ */

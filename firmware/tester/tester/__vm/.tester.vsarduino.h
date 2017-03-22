@@ -20,6 +20,7 @@
 
 //
 //
+void pins();
 
 #include "pins_arduino.h" 
 #include "arduino.h"

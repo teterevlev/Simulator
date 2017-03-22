@@ -20,6 +20,10 @@ void uart_putchar(uint8_t c) {
 	loop_until_bit_is_set(UCSR0A, UDRE0); /* Wait until data register empty. */
 	UDR0 = c;
 }
+void uart_putcharln(uint8_t c){
+	uart_putchar(c);
+	uart_putchar('\n');
+}
 bool uart_available(){
 	if ( !(UCSR0A & (1<<RXC0)) ) return false;
 	return true;
@@ -32,7 +36,8 @@ void uart_dec(int32_t d){
 		uart_putchar('-');
 		d = -d;
 	}
-	if(d>=10000) uart_putchar((d/10000)+48);
+	if(d>=100000) uart_putchar((d/100000)+48);
+	if(d>=10000) uart_putchar(((d/10000)%10)+48);
 	if(d>=1000) uart_putchar(((d/1000)%10)+48);
 	if(d>=100) uart_putchar(((d/100)%10)+48);
 	if(d>=10) uart_putchar(((d/10)%10)+48);
@@ -64,7 +69,7 @@ void drive(uint8_t id, float period){
 }
 void gpio_init(){
 	TCCR0A=0x42;
-	TCCR0B=0x05;
+	TCCR0B=0;
 	TCNT0=0x00;
 	OCR0A=255;
 	OCR0B=0x00;
@@ -102,5 +107,9 @@ void interrupt_init(){
 	DDRC=0x00;
 
 	PORTD=0x00;
-	DDRD=0x40;
+	DDRD=0b01100000;
+}
+void stopTimer(uint8_t id){
+	if(id==0)
+	TCCR0B=0;
 }
